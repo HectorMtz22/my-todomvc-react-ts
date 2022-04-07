@@ -1,5 +1,7 @@
 import { Todo } from 'models/todo'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import initialTodos from 'data/initialTodos.json'
 
 interface TodosHook {
   todos: Todo[]
@@ -9,6 +11,10 @@ interface TodosHook {
 
 export default function useTodo (): TodosHook {
   const [todos, setTodos] = useState<Todo[]>([])
+
+  useEffect(() => {
+    setTodos(initialTodos)
+  }, [])
 
   const addTodo = (todo: Todo): void => {
     setTodos(prevState => prevState.concat(todo))
