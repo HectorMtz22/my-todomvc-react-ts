@@ -1,6 +1,7 @@
-import ListTodos from 'components/ListTodos'
+import { ReactElement } from 'react'
+import ListTodos from './components/ListTodos'
 
-function App () {
+function App (): ReactElement {
   return (
     <div className='todoapp'>
       <header className='header'>
