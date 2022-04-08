@@ -1,9 +1,10 @@
 import ItemTodo from 'components/ItemTodo'
+import { useListTodos } from 'context/ListTodos'
 import useTodos from 'hooks/useTodos'
 import { ReactElement } from 'react'
 
 export default function ListTodos (): ReactElement {
-  const { todos } = useTodos()
+  const { todos } = useListTodos()
   console.log(todos)
   return (
     <section className='main'>
