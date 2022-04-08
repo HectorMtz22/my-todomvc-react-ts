@@ -9,7 +9,7 @@ interface TodosHook {
   removeTodo: (id: number) => void
 }
 
-export default function useTodo (): TodosHook {
+export default function useTodos (): TodosHook {
   const [todos, setTodos] = useState<Todo[]>([])
 
   useEffect(() => {

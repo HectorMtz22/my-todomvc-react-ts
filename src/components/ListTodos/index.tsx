@@ -1,9 +1,9 @@
 import ItemTodo from 'components/ItemTodo'
-import useTodo from 'hooks/useTodo'
+import useTodos from 'hooks/useTodos'
 import { ReactElement } from 'react'
 
 export default function ListTodos (): ReactElement {
-  const { todos } = useTodo()
+  const { todos } = useTodos()
   return (
     <section className='main'>
       <input id='toggle-all' type='checkbox' className='toggle-all' />

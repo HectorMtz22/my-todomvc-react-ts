@@ -12,6 +12,7 @@ export default function Input (props: any): ReactElement {
       <input
         type='text'
         onChange={handleChange}
+        onBlur={handleSubmit}
         {...props}
       />
     </form>
