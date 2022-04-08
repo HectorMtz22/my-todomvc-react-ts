@@ -1,9 +1,11 @@
 import { Todo } from 'models/todo'
-import { ReactElement, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import Input from 'components/Input'
 
 export default function ItemTodo (todo: Todo): ReactElement {
   const [editingMode, setEditingMode] = useState(false)
+
+  useEffect(() => { setEditingMode(false) }, [todo])
 
   const handleCheckClick = (): void => {
 
@@ -15,6 +17,7 @@ export default function ItemTodo (todo: Todo): ReactElement {
   const handleDestroyClick = (): void => {
 
   }
+
   const className = editingMode ? 'todo-item editing' : 'todo-item'
   return (
     <li className={className}>

@@ -7,6 +7,7 @@ interface TodosHook {
   todos: Todo[]
   addTodo: (t: Todo) => void
   removeTodo: (id: number) => void
+  editTodo: (t: Todo) => void
 }
 
 export default function useTodos (): TodosHook {
@@ -26,5 +27,12 @@ export default function useTodos (): TodosHook {
     )
   }
 
-  return { todos, addTodo, removeTodo }
+  const editTodo = (todo: Todo): void => {
+    const newData = todos.slice()
+    const index = newData.findIndex(item => item.id === todo.id)
+    newData[index] = todo
+    setTodos(newData)
+  }
+
+  return { todos, addTodo, removeTodo, editTodo }
 }

@@ -4,6 +4,7 @@ import { ReactElement } from 'react'
 
 export default function ListTodos (): ReactElement {
   const { todos } = useTodos()
+  console.log(todos)
   return (
     <section className='main'>
       <input id='toggle-all' type='checkbox' className='toggle-all' />
