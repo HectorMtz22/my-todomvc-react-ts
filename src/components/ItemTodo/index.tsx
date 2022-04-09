@@ -11,7 +11,13 @@ export default function ItemTodo (todo: Todo): ReactElement {
   useEffect(() => { setEditingMode(false) }, [todo])
 
   const handleCheckClick = (): void => {
-    setCompleted(previousValue => !previousValue)
+    const data: Todo = {
+      id: todo.id,
+      title: todo.title,
+      isCompleted: !completed
+    }
+    setCompleted(!completed)
+    editTodo(data)
   }
 
   const handleLabelClick = (): void => {

@@ -24,7 +24,7 @@ export function ListTodosProvider ({ children }: any): ReactElement {
 
   const editTodo = (todo: Todo): void => {
     const newData = todos.map(item => item.id === todo.id
-      ? { ...item, title: todo.title }
+      ? { ...item, title: todo.title, isCompleted: todo.isCompleted }
       : item
     )
     setTodos(newData)
