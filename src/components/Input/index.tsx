@@ -7,16 +7,26 @@ export default function Input (props: any): ReactElement {
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     props.onSubmit(value)
+    props.iscontrolled === true && setValue('')
   }
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type='text'
-        onChange={handleChange}
-        onBlur={handleSubmit}
-        autoFocus
-        {...props}
-      />
+      {props.iscontrolled === true
+        ? <input
+            type='text'
+            onBlur={handleSubmit}
+            autoFocus
+            {...props}
+            value={value}
+            onChange={handleChange}
+          />
+        : <input
+            type='text'
+            onBlur={handleSubmit}
+            autoFocus
+            {...props}
+            onChange={handleChange}
+          />}
     </form>
   )
 }

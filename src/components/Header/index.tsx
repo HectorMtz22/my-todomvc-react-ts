@@ -22,6 +22,7 @@ export default function Header (): ReactElement {
         placeholder='What needs to be done?'
         onSubmit={handleSubmit}
         onBlur={null}
+        iscontrolled
       />
     </header>
   )
