@@ -21,12 +21,13 @@ export default function ItemTodo (todo: Todo): ReactElement {
   }
 
   const handleSubmit = (title: string): void => {
+    setEditingMode(false)
+    if (title === '') return
     const data: Todo = {
       id: todo.id,
       title,
       isCompleted: todo.isCompleted
     }
-    setEditingMode(false)
     editTodo(data)
   }
 
@@ -38,12 +39,15 @@ export default function ItemTodo (todo: Todo): ReactElement {
         <label onDoubleClick={handleLabelClick}>{todo.title}</label>
         <button className='destroy' onClick={handleDestroyClick} />
       </div>
-      <Input
-        id={todo.id}
-        className='edit'
-        defaultValue={todo.title}
-        onSubmit={handleSubmit}
-      />
+      {
+        editingMode &&
+          <Input
+            id={todo.id}
+            className='edit'
+            defaultValue={todo.title}
+            onSubmit={handleSubmit}
+          />
+      }
     </li>
   )
 }

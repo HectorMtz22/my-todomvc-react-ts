@@ -14,6 +14,7 @@ export default function Input (props: any): ReactElement {
         type='text'
         onChange={handleChange}
         onBlur={handleSubmit}
+        autoFocus
         {...props}
       />
     </form>
