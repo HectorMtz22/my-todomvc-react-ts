@@ -6,13 +6,7 @@ export default function Input (props: any): ReactElement {
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => { setValue(e.target.value) }
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
-    console.log(value)
-    const data: any = {
-      id: props.id,
-      title: value,
-      isCompleted: props.isCompleted
-    }
-    props.onSubmit(data)
+    props.onSubmit(value)
   }
   return (
     <form onSubmit={handleSubmit}>
