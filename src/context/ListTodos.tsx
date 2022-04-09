@@ -5,7 +5,7 @@ import initialTodos from 'data/initialTodos.json'
 interface ContextModel {
   todos: Todo[]
   editTodo: (t: Todo) => void
-
+  addTodo: (t: Todo) => void
 }
 
 const Context = createContext<ContextModel | undefined>(undefined)
@@ -30,8 +30,12 @@ export function ListTodosProvider ({ children }: any): ReactElement {
     setTodos(newData)
   }
 
+  const addTodo = (todo: Todo): void => {
+    setTodos(prevState => prevState.concat(todo))
+  }
+
   return (
-    <Context.Provider value={{ todos, editTodo }}>
+    <Context.Provider value={{ todos, editTodo, addTodo }}>
       {children}
     </Context.Provider>
   )

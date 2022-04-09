@@ -21,7 +21,6 @@ export default function ItemTodo (todo: Todo): ReactElement {
   }
 
   const handleSubmit = (title: string): void => {
-    console.log(title)
     const data: Todo = {
       id: todo.id,
       title,
