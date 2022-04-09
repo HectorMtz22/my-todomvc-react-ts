@@ -18,7 +18,7 @@ export default function ListTodos (): ReactElement {
             title={todo.title}
             isCompleted={todo.isCompleted}
           />
-        ))}
+        )).reverse()}
       </ul>
     </section>
   )
