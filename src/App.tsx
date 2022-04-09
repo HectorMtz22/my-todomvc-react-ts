@@ -2,6 +2,7 @@ import { ReactElement } from 'react'
 import ListTodos from './components/ListTodos'
 import { ListTodosProvider } from 'context/ListTodos'
 import Header from 'components/Header'
+import TodoCount from 'components/TodoCount'
 
 function App (): ReactElement {
   return (
@@ -11,10 +12,7 @@ function App (): ReactElement {
         <ListTodos />
 
         <footer className='footer'>
-          <span className='todo-count'>
-            {/* ! TODO  */}
-            <strong>10 left</strong>
-          </span>
+          <TodoCount />
           <ul className='filters'>
             <li><a href='#'>All</a></li>
             <li><a href='#'>Active</a></li>
