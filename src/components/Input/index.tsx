@@ -1,9 +1,7 @@
-import useTodos from 'hooks/useTodos'
 // import { Todo } from 'models/todo'
 import { ChangeEvent, FormEvent, ReactElement, useState } from 'react'
 
 export default function Input (props: any): ReactElement {
-  const { editTodo } = useTodos()
   const [value, setValue] = useState('')
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => { setValue(e.target.value) }
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
@@ -14,7 +12,7 @@ export default function Input (props: any): ReactElement {
       title: value,
       isCompleted: props.isCompleted
     }
-    editTodo(data)
+    props.onSubmit(data)
   }
   return (
     <form onSubmit={handleSubmit}>

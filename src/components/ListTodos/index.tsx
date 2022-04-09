@@ -5,7 +5,6 @@ import { ReactElement } from 'react'
 
 export default function ListTodos (): ReactElement {
   const { todos } = useListTodos()
-  console.log(todos)
   return (
     <section className='main'>
       <input id='toggle-all' type='checkbox' className='toggle-all' />
@@ -13,7 +12,12 @@ export default function ListTodos (): ReactElement {
 
       <ul className='todo-list'>
         {todos.map(todo => (
-          <ItemTodo key={todo.id} {...todo} />
+          <ItemTodo
+            key={todo.id}
+            id={todo.id}
+            title={todo.title}
+            isCompleted={todo.isCompleted}
+          />
         ))}
       </ul>
     </section>
