@@ -6,11 +6,12 @@ import { useListTodos } from 'context/ListTodos'
 export default function ItemTodo (todo: Todo): ReactElement {
   const { editTodo } = useListTodos()
   const [editingMode, setEditingMode] = useState(false)
+  const [completed, setCompleted] = useState(todo.isCompleted)
 
   useEffect(() => { setEditingMode(false) }, [todo])
 
   const handleCheckClick = (): void => {
-
+    setCompleted(previousValue => !previousValue)
   }
 
   const handleLabelClick = (): void => {
@@ -31,11 +32,13 @@ export default function ItemTodo (todo: Todo): ReactElement {
     editTodo(data)
   }
 
-  const className = editingMode ? 'todo-item editing' : 'todo-item'
+  let className = 'todo-item '
+  if (editingMode) className += 'editing '
+  if (completed) className += 'completed '
   return (
     <li className={className}>
       <div className='view'>
-        <input type='checkbox' className='toggle' onClick={handleCheckClick} />
+        <input type='checkbox' className='toggle' onChange={handleCheckClick} checked={completed} />
         <label onDoubleClick={handleLabelClick}>{todo.title}</label>
         <button className='destroy' onClick={handleDestroyClick} />
       </div>
