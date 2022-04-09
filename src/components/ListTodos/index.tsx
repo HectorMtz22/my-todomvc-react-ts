@@ -1,7 +1,7 @@
 import ItemTodo from 'components/ItemTodo'
 import { useListTodos } from 'context/ListTodos'
-import useTodos from 'hooks/useTodos'
 import { ReactElement } from 'react'
+import { Todo } from 'models/todo'
 
 export default function ListTodos (): ReactElement {
   const { todos } = useListTodos()
@@ -11,7 +11,7 @@ export default function ListTodos (): ReactElement {
       <label htmlFor='toggle-all' />
 
       <ul className='todo-list'>
-        {todos.map(todo => (
+        {todos.map((todo: Todo) => (
           <ItemTodo
             key={todo.id}
             id={todo.id}

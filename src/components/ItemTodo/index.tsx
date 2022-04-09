@@ -20,8 +20,7 @@ export default function ItemTodo (todo: Todo): ReactElement {
 
   }
 
-  const handleSubmit = (todo) => {
-    console.log(todo)
+  const handleSubmit = (todo: Todo): void => {
     setEditingMode(false)
     editTodo(todo)
   }
