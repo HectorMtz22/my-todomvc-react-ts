@@ -1,7 +1,9 @@
 import { Todo } from 'models/todo'
-import { createContext, ReactElement, useContext, useState } from 'react'
+import { createContext, ReactElement, useContext, useEffect, useState } from 'react'
 import initialTodos from 'data/initialTodos.json'
 import { Pages } from 'models/page'
+import { sync } from 'services/sync'
+import { save } from 'services/save'
 
 interface ContextModel {
   todos: Todo[]
@@ -25,6 +27,17 @@ export function useListTodos (): any {
 export function ListTodosProvider ({ children }: any): ReactElement {
   const [todos, setTodos] = useState<Todo[]>(initialTodos)
   const [page, setPage] = useState<Pages>(Pages.all)
+
+  useEffect(() => {
+    sync()
+      .then(res => setTodos(res))
+      .catch(() => {})
+  }, [])
+
+  useEffect(() => {
+    (async () => await save(todos))()
+      .catch(() => {})
+  }, [todos])
 
   const editTodo = (todo: Todo): void => {
     const newData = todos.map(item => item.id === todo.id
