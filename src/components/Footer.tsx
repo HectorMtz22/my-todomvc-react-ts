@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import TodoCount from './TodoCount'
-
-enum Pages {
-  all = 'all',
-  active = 'active',
-  completed = 'completed'
-}
+import { Pages } from 'models/page'
+import { useListTodos } from 'context/ListTodos'
 
 export default function Footer (): React.ReactElement {
+  const { setPage } = useListTodos()
   const [currentPage, setCurrentPage] = useState<Pages>(Pages.all)
+  const handleChange = (page: Pages): void => {
+    setCurrentPage(page)
+    setPage(page)
+  }
   return (
     <footer className='footer'>
       <TodoCount />
@@ -16,7 +17,7 @@ export default function Footer (): React.ReactElement {
         <li>
           <a
             href='#'
-            onClick={() => setCurrentPage(Pages.all)}
+            onClick={() => handleChange(Pages.all)}
             className={currentPage === Pages.all ? 'selected' : ''}
           >
             All
@@ -25,7 +26,7 @@ export default function Footer (): React.ReactElement {
         <li>
           <a
             href='#'
-            onClick={() => setCurrentPage(Pages.active)}
+            onClick={() => handleChange(Pages.active)}
             className={currentPage === Pages.active ? 'selected' : ''}
           >
             Active
@@ -34,7 +35,7 @@ export default function Footer (): React.ReactElement {
         <li>
           <a
             href='#'
-            onClick={() => setCurrentPage(Pages.completed)}
+            onClick={() => handleChange(Pages.completed)}
             className={currentPage === Pages.completed ? 'selected' : ''}
           >
             Completed
