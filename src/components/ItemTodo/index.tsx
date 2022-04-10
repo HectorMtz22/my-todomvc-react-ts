@@ -4,7 +4,7 @@ import Input from 'components/Input'
 import { useListTodos } from 'context/ListTodos'
 
 export default function ItemTodo (todo: Todo): ReactElement {
-  const { editTodo } = useListTodos()
+  const { editTodo, removeTodo } = useListTodos()
   const [editingMode, setEditingMode] = useState(false)
   const [completed, setCompleted] = useState(todo.isCompleted)
 
@@ -24,7 +24,7 @@ export default function ItemTodo (todo: Todo): ReactElement {
     setEditingMode(true)
   }
   const handleDestroyClick = (): void => {
-
+    removeTodo(todo.id)
   }
 
   const handleSubmit = (title: string): void => {

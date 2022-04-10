@@ -6,6 +6,7 @@ interface ContextModel {
   todos: Todo[]
   editTodo: (t: Todo) => void
   addTodo: (t: Todo) => void
+  removeTodo: (id: number) => void
 }
 
 const Context = createContext<ContextModel | undefined>(undefined)
@@ -34,8 +35,13 @@ export function ListTodosProvider ({ children }: any): ReactElement {
     setTodos(prevState => prevState.concat(todo))
   }
 
+  const removeTodo = (id: number): void => {
+    setTodos(prevState => prevState
+      .filter(todo => todo.id !== id)
+    )
+  }
   return (
-    <Context.Provider value={{ todos, editTodo, addTodo }}>
+    <Context.Provider value={{ todos, editTodo, addTodo, removeTodo }}>
       {children}
     </Context.Provider>
   )
