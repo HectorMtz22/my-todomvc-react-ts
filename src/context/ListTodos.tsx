@@ -11,6 +11,7 @@ interface ContextModel {
   addTodo: (t: Todo) => void
   removeTodo: (id: number) => void
   setPage: (p: Pages) => void
+  clearCompleted: () => void
 }
 
 const Context = createContext<ContextModel | undefined>(undefined)
@@ -63,8 +64,13 @@ export function ListTodosProvider ({ children }: any): ReactElement {
     if (page === Pages.completed) return todos.filter(item => item.isCompleted)
     return todos
   }
+
+  const clearCompleted = (): void => {
+    const newData = todos.filter(item => !item.isCompleted)
+    setTodos(newData)
+  }
   return (
-    <Context.Provider value={{ todos: listTodos(), editTodo, addTodo, removeTodo, setPage }}>
+    <Context.Provider value={{ todos: listTodos(), editTodo, addTodo, removeTodo, setPage, clearCompleted }}>
       {children}
     </Context.Provider>
   )
